@@ -1,0 +1,40 @@
+:host{
+
+    .blcs-palette{
+        position: absolute;
+        display: flex;
+        flex-wrap: wrap;
+        z-index: 500;
+    }
+
+    .blcs-color{
+        flex-grow: 0;
+        flex-shrink: 0;
+        border: 0px solid white;
+        transition: border-width 0.1s ease-in-out;
+
+        &:hover{
+            border: 3px solid white;
+        }
+    }
+
+    .blcs-pos-tl{
+        bottom: 0;
+        right: 0;    
+    }
+
+    .blcs-pos-tr{
+        bottom: 0;
+        left: 0;
+    }
+
+    .blcs-pos-bl{
+        top: 0;
+        right: 0;
+    }
+
+    .blcs-pos-br{
+        top: 0;
+        left: 0;
+    }
+}

@@ -1,0 +1,3 @@
+<div class="blcs-preview" [ngStyle]="{'height': height + 'px', 'width': width + 'px', 'background-color': color ? color.hex : '#000'}"
+    (click)="togglePalette()"></div>
+<bytelabs-color-selector-palette *ngIf="showPalette"></bytelabs-color-selector-palette>

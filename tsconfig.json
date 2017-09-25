@@ -1,0 +1,33 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"module": "commonjs",
+
+		"moduleResolution": "node",
+
+		"declaration": false,
+		"noEmitHelpers": false,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+
+		"lib": [ "es5", "es2015", "dom" ],
+
+		"noImplicitAny": true,
+		"suppressImplicitAnyIndexErrors": true,
+
+		"allowUnreachableCode": false,
+		"noUnusedParameters": true,
+		"noUnusedLocals": true,
+
+		"sourceMap": true
+	},
+
+	"exclude": [
+		"./node_modules"
+	],
+
+	"include": [
+		"./src/**/*.ts"
+	]
+
+}
