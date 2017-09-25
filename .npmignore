@@ -1,0 +1,11 @@
+src/
+node_modules/
+config/
+.gitignore
+.travis.yml
+framework.md
+gulpfile.js
+*.log
+tsconfig-aot.json
+tsconfig.json
+tslint.json
