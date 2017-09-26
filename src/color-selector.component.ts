@@ -40,11 +40,7 @@ export class BytelabsColorSelectorComponent implements OnInit {
     ngOnInit() {
 
         if (this.options) {
-            const config = this.colorSelectorService.config;
-
-            for (const option of Object.keys(this.options)) {
-                config[option] = this.options[option];
-            }
+            this.colorSelectorService.updateConfig(this.options);
         }
     }
 
