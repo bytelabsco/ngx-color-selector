@@ -1,12 +1,16 @@
 language: node_js
-node_js:
-  - "6.9"
-before_script:
-  - npm install -g gulp
-script: gulp
 sudo: false
+node_js:
+  - '7'
+after_success:
+  - npm run build
+before_deploy:
+  - cd dist
 deploy:
-  skip_cleanup: true
   provider: npm
-  email: "jeremy@bytelabs.co"
+  email: jeremy@bytelabs.co
+  skip_cleanup: true
   api_key: $NPM_TOKEN
+  on:
+    branch: master
+    tags: true

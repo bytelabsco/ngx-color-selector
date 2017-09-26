@@ -1,66 +1,35 @@
-###################
-# Project Specific
-###################
+# Node
+node_modules/*
+npm-debug.log
 
+# TypeScript
+src/*.js
+src/*.map
+src/*.d.ts
 
-###################
-# Editors
-###################
-
-# Eclipse
+# JetBrains
+.idea
 .project
 .settings
-.classpath
-
-# IntelliJ
-.idea/
+.idea/*
 *.iml
-*.iws
 
-# Net Beans
-nbactions.xml
-nb-configuration.xml
+# VS Code
+.vscode/*
 
-# VS
-.vscode
+# Windows
+Thumbs.db
+Desktop.ini
 
-# Vi, etc
-*.swp
-*.tmp
-*.bak
-
-# General
-*~
-
-
-###################
-# Build
-###################
-
-# Node
-node_modules/
-npm-debug.log
-*.tgz
-yarn.lock
-
-# Common
-bin/
-tmp/
-
-# Apple
-*~.nib
-
-
-###################
-# OS
-###################
-
-# MacOS
+# Mac
 .DS_Store
+**/.DS_Store
 
+# Ngc generated files
+**/*.ngfactory.ts
 
-###################
-# Tests
-###################
+# Build files
+dist/*
 
-dist/
+# Playground tmp files
+.playground

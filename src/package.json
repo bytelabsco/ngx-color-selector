@@ -1,0 +1,28 @@
+{
+  "name": "@bytelabsco/ngx-color-selector",
+  "version": "0.0.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bytelabsco/ngx-color-selector"
+  },
+  "author": {
+    "name": "Jeremy Ramsey",
+    "email": "jeremy@bytelabs.co"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bytelabsco/ngx-color-selector/issues"
+  },
+  "main": "ngx-color-selector.umd.js",
+  "module": "ngx-color-selector.js",
+  "jsnext:main": "ngx-color-selector.js",
+  "typings": "ngx-color-selector.d.ts",
+  "peerDependencies": {
+    "@angular/core": "^4.0.0",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
+  }
+}

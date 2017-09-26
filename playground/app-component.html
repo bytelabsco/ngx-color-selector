@@ -1,0 +1,23 @@
+<div class="container">
+    <h2>Color Selector Demo</h2>
+    <div class="row">
+        <div class="col-12">
+            <bytelabs-color-selector [(color)]="currentColor"></bytelabs-color-selector>
+            <span>Selected Color</span>
+            <pre>{{currentColor | json}}</pre>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Select a color" aria-label="Select a color">
+                <span class="input-group-btn">
+                    <div class="btn btn-secondary" class="btn btn-secondary">
+                        <bytelabs-color-selector [(color)]="currentColor" [options]="{position: PalettePosition.BottomLeft}"></bytelabs-color-selector>
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
