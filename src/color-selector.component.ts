@@ -6,7 +6,11 @@ import { BytelabsColorSelectorService } from './color-selector.service';
     selector: 'bytelabs-color-selector',
     templateUrl: 'color-selector.html',
     styleUrls: ['./color-selector.scss'],
-    providers: [BytelabsColorSelectorService]
+    providers: [BytelabsColorSelectorService],
+    host: {
+        '[style.height.px]': 'height',
+        '[style.width.px]': 'width'
+    }
 })
 export class BytelabsColorSelectorComponent implements OnInit {
 
