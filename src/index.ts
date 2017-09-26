@@ -5,6 +5,11 @@ import { ColorSelectorConfig } from './color-selector-config';
 import { BytelabsColorSelectorComponent } from './color-selector.component';
 import { BytelabsColorSelectorPaletteComponent } from './color-selector-palette.component';
 
+export * from './color-selector-config';
+export * from './color-selector-palette.component';
+export * from './color-selector.component';
+export * from './color-selector.service';
+
 @NgModule({
     imports: [
         CommonModule

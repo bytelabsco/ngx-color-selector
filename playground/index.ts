@@ -6,19 +6,26 @@ import { NgModule } from '@angular/core';
 import { Component } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { SampleModule }  from 'ngx-color-selector';
+import { BytelabsColorSelectorModule, IColor, PalettePosition } from '@bytelabsco/ngx-color-selector';
 
 @Component({
-  selector: 'app',
-  template: `<sample-component></sample-component>`
+  selector: 'app-component',
+  templateUrl: 'app-component.html'
 })
-class AppComponent {}
+export class AppComponent {
+
+  PalettePosition = PalettePosition;
+
+  public currentColor: IColor = {
+    hex: '#000000'
+  };
+}
 
 @NgModule({
-  bootstrap: [ AppComponent ],
-  declarations: [ AppComponent ],
-  imports: [ BrowserModule, SampleModule ]
+  bootstrap: [AppComponent],
+  declarations: [AppComponent],
+  imports: [BrowserModule, BytelabsColorSelectorModule]
 })
-class AppModule {}
+class AppModule { }
 
 platformBrowserDynamic().bootstrapModule(AppModule);
