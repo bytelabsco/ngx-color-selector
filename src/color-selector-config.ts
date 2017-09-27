@@ -37,7 +37,7 @@ export class ColorSelectorConfig implements IColorSelectorConfig {
     itemsPer: number;
     position: PalettePosition;
 
-    constructor(config?: ColorSelectorConfig) {
+    constructor(config?: any) {
         for (const option of Object.keys(COLOR_SELECTOR_CONFIG_DEFAULTS)) {
             this[option] = config && config[option] != null ? config[option] : COLOR_SELECTOR_CONFIG_DEFAULTS[option];
         }
