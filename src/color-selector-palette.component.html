@@ -1,5 +1,5 @@
 <div class="blcs-palette" [ngStyle]="{'height': height + 'px', 'width': width + 'px', 'flex-direction': paletteDirection === 0 ? 'row' : 'column'}"
     [ngClass]="posClass">
     <div class="blcs-color" *ngFor="let pc of palette" [ngStyle]="{'background-color': pc.hex, 'height': swatchSize.height + 'px', 'width': swatchSize.width + 'px' }"
-        (click)="selectColor(pc)"></div>
+        [ngClass]="{'blcs-color-selected': pc === currentColor}" (click)="selectColor(pc)"></div>
 </div>

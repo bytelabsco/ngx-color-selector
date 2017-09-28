@@ -11,6 +11,8 @@ export class BytelabsColorSelectorPaletteComponent implements OnInit {
 
     PaletteDirection = PaletteDirection;
 
+    currentColor: IColor;
+
     height: number;
     width: number;
     paletteDirection: PaletteDirection;
@@ -25,7 +27,11 @@ export class BytelabsColorSelectorPaletteComponent implements OnInit {
 
     palette: IColor[] = this.colorSelectorService.config.palette;
 
-    public constructor(private colorSelectorService: BytelabsColorSelectorService) { }
+    public constructor(private colorSelectorService: BytelabsColorSelectorService) {
+        this.colorSelectorService.currentColor$.subscribe(color => {
+            this.currentColor = color;
+        })
+    }
 
     ngOnInit() {
 
@@ -59,6 +65,7 @@ export class BytelabsColorSelectorPaletteComponent implements OnInit {
         } else {
             rows = groupSize;
             cols = this.colorSelectorService.config.itemsPer;
+
         }
 
         this.height = rows * this.colorSelectorService.config.itemSize.height;

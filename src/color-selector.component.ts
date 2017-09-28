@@ -16,7 +16,16 @@ export class BytelabsColorSelectorComponent implements OnInit {
 
     public paletteDirection = PaletteDirection;
 
-    @Input() color: IColor;
+    private _color: IColor;
+    @Input()
+    set color(color: IColor) {
+        this.colorSelectorService.currentColor = color;
+    }
+
+    get color() {
+        return this._color;
+    }
+
     @Output() colorChange = new EventEmitter<IColor>();
 
     @Input() options: any;
@@ -28,7 +37,7 @@ export class BytelabsColorSelectorComponent implements OnInit {
 
     constructor(private elementRef: ElementRef, private colorSelectorService: BytelabsColorSelectorService) {
         this.colorSelectorService.currentColor$.subscribe((color: IColor) => {
-            this.color = color;
+            this._color = color;
             this.colorChange.next(color);
             this.showPalette = false;
         });

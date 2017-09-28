@@ -19,8 +19,21 @@ export class BytelabsColorSelectorService {
     }
 
     set currentColor(color: IColor) {
-        this._currentColor = color;
-        this._currentColorSubject.next(color);
+
+        // TODO - This will fail if just rgb values of 0 are passed in.
+        if (!color.hex && (!color.r && !color.g && !color.b)) {
+            return;
+        }
+
+        this.calculateRGB(color);
+
+        // Find a match for this color in the palette if it's there
+        let match = this.config.palette.find(paletteColor => {
+            return color.r === paletteColor.r && color.g === paletteColor.g && color.b === paletteColor.b;
+        })
+
+        this._currentColor = match || color;
+        this._currentColorSubject.next(this._currentColor);
     }
 
     get currentColor$() {
@@ -61,12 +74,7 @@ export class BytelabsColorSelectorService {
             return;
         }
 
-        // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-        const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-        const hex = color.hex.replace(shorthandRegex, (m, r, g, b) => {
-            m = m; // TODO - Linter
-            return r + r + g + g + b + b;
-        });
+        const hex = this.expandHex(color.hex);
 
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
         if (!result) {
@@ -95,6 +103,17 @@ export class BytelabsColorSelectorService {
         }
 
         return '#' + this.componentToHex(color.r) + this.componentToHex(color.g) + this.componentToHex(color.b);
+    }
+
+    private expandHex(shortHex: string) {
+        // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+        const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+        const hex = shortHex.replace(shorthandRegex, (m, r, g, b) => {
+            m = m; // TODO - Linter
+            return r + r + g + g + b + b;
+        });
+
+        return hex;
     }
 
     private componentToHex = (c: number): string => {
