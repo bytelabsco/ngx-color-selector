@@ -4,8 +4,8 @@ import { BytelabsColorSelectorService } from './color-selector.service';
 
 @Component({
     selector: 'bytelabs-color-selector',
-    templateUrl: 'color-selector.html',
-    styleUrls: ['./color-selector.scss'],
+    templateUrl: 'color-selector.component.html',
+    styleUrls: ['./color-selector.component.scss'],
     providers: [BytelabsColorSelectorService],
     host: {
         '[style.height.px]': 'height',

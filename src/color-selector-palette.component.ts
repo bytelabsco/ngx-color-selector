@@ -4,8 +4,8 @@ import { IColor, ISwatchSize, PaletteDirection, PalettePosition } from './color-
 
 @Component({
     selector: 'bytelabs-color-selector-palette',
-    templateUrl: 'color-selector-palette.html',
-    styleUrls: ['./color-selector-palette.scss']
+    templateUrl: 'color-selector-palette.component.html',
+    styleUrls: ['./color-selector-palette.component.scss']
 })
 export class BytelabsColorSelectorPaletteComponent implements OnInit {
 

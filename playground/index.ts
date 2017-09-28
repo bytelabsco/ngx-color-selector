@@ -18,7 +18,7 @@ export class AppComponent {
 
   public options = {
     palette: MATERIAL_COLORS,
-    position: PalettePosition.BottomLeft
+    position: PalettePosition.TopLeft
   };
 
   public currentColor: IColor = {

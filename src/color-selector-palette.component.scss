@@ -1,7 +1,9 @@
 :host{
 
+    position: absolute;
+
     .blcs-palette{
-        position: absolute;
+        position: fixed;
         display: flex;
         flex-wrap: wrap;
         z-index: 500;
@@ -23,22 +25,18 @@
     }
 
     .blcs-pos-tl{
-        bottom: 0;
-        right: 0;    
+        transform: translateY(-100%)  translateX(-100%);
     }
 
     .blcs-pos-tr{
-        bottom: 0;
-        left: 0;
+        transform: translateY(-100%);
     }
 
     .blcs-pos-bl{
-        top: 0;
-        right: 0;
+        transform: translateX(-100%);
     }
 
     .blcs-pos-br{
-        top: 0;
-        left: 0;
+        // default
     }
 }
