@@ -20,12 +20,23 @@ export class BytelabsColorSelectorService {
 
     set currentColor(color: IColor) {
 
-        // TODO - This will fail if just rgb values of 0 are passed in.
-        if (!color.hex && (!color.r && !color.g && !color.b)) {
+        if (!color) {
+            this._currentColor = null;
+            this._currentColorSubject.next(this._currentColor);
             return;
         }
 
-        this.calculateRGB(color);
+
+        if (!color.hex && (color.r == null || color.g == null || color.b == null)) {
+            // Invalid color value
+            return;
+        }
+
+        if (color.hex) {
+            this.calculateRGB(color);
+        } else {
+            this.calculateHex(color);
+        }
 
         // Find a match for this color in the palette if it's there
         let match = this.config.palette.find(paletteColor => {
