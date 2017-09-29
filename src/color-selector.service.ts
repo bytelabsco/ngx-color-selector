@@ -11,7 +11,7 @@ export class BytelabsColorSelectorService {
 
     public config: ColorSelectorConfig = new ColorSelectorConfig();
 
-    private _currentColor: IColor;
+    private _currentColor: IColor = null;
     private _currentColorSubject: ReplaySubject<IColor> = new ReplaySubject<IColor>();
 
     get currentColor() {
@@ -22,10 +22,9 @@ export class BytelabsColorSelectorService {
 
         if (!color) {
             this._currentColor = null;
-            this._currentColorSubject.next(this._currentColor);
+            this._currentColor = null;
             return;
         }
-
 
         if (!color.hex && (color.r == null || color.g == null || color.b == null)) {
             // Invalid color value
