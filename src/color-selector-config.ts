@@ -23,11 +23,11 @@ export interface ISwatchSize {
 }
 
 export interface IColorSelectorConfig {
-    palette: IColor[];
-    direction: PaletteDirection;
-    itemSize: ISwatchSize;
-    itemsPer: number;
-    position: PalettePosition;
+    palette?: IColor[];
+    direction?: PaletteDirection;
+    itemSize?: ISwatchSize;
+    itemsPer?: number;
+    position?: PalettePosition;
 }
 
 export class ColorSelectorConfig implements IColorSelectorConfig {

@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ColorSelectorConfig } from './color-selector-config';
+import { ColorSelectorConfig, IColorSelectorConfig } from './color-selector-config';
 
 import { BytelabsColorSelectorComponent } from './color-selector.component';
 import { BytelabsColorSelectorPaletteComponent } from './color-selector-palette.component';
@@ -25,10 +25,10 @@ export * from './color-selector.service';
 })
 export class BytelabsColorSelectorModule {
 
-    static forRoot(config: ColorSelectorConfig): ModuleWithProviders {
+    static forRoot(config: IColorSelectorConfig): ModuleWithProviders {
         return {
             ngModule: BytelabsColorSelectorModule,
-            providers: [{ provide: ColorSelectorConfig, useValue: config }]
+            providers: [{ provide: ColorSelectorConfig, useValue: new ColorSelectorConfig(config) }]
         };
     }
 }
