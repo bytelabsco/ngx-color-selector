@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ColorSelectorConfig, IColorSelectorConfig } from './color-selector-config';
+import { ColorSelectorConfig, COLOR_SELECTOR_CONFIG_DEFAULTS } from './color-selector-config';
 
 import { BytelabsColorSelectorComponent } from './color-selector.component';
 import { BytelabsColorSelectorPaletteComponent } from './color-selector-palette.component';
@@ -10,8 +10,16 @@ export * from './color-selector-palette.component';
 export * from './color-selector.component';
 export * from './color-selector.service';
 
-export function GetConfiguration(config?: IColorSelectorConfig) {
-    return new ColorSelectorConfig(config);
+
+export function configFactory(config: any = {}) {
+
+    let initialConfig = {}
+
+    for (const option of Object.keys(COLOR_SELECTOR_CONFIG_DEFAULTS)) {
+        initialConfig[option] = config[option] || COLOR_SELECTOR_CONFIG_DEFAULTS[option];
+    }
+
+    return initialConfig;
 }
 
 @NgModule({
@@ -29,10 +37,12 @@ export function GetConfiguration(config?: IColorSelectorConfig) {
 })
 export class BytelabsColorSelectorModule {
 
-    static forRoot(config: IColorSelectorConfig): ModuleWithProviders {
+    static forRoot(config: any = {}): ModuleWithProviders {
         return {
             ngModule: BytelabsColorSelectorModule,
-            providers: [{ provide: ColorSelectorConfig, useValue: GetConfiguration(config) }]
+            providers: [{
+                provide: ColorSelectorConfig, useFactory: configFactory, deps: [config]
+            }]
         };
     }
 }
