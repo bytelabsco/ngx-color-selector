@@ -1,5 +1,6 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule, Compiler } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { JitCompilerFactory } from '@angular/compiler';
 import { IColorSelectorConfig, ColorSelectorConfig, COLOR_SELECTOR_CONFIG_DEFAULTS } from './color-selector-config';
 
 import { BytelabsColorSelectorComponent } from './color-selector.component';
@@ -10,6 +11,12 @@ export * from './color-selector-config';
 export * from './color-selector-palette.component';
 export * from './color-selector.component';
 export * from './color-selector.service';
+
+// Workaround for Compiler in AOT
+// https://github.com/angular/angular/issues/15510#issuecomment-294301758
+export function createJitCompiler() {
+    return new JitCompilerFactory([{ useDebug: false, useJit: true }]).createCompiler();
+}
 
 
 export function configFactory(config: IColorSelectorConfig = {}) {
@@ -34,6 +41,9 @@ export function configFactory(config: IColorSelectorConfig = {}) {
     declarations: [
         BytelabsColorSelectorComponent,
         BytelabsColorSelectorPaletteComponent
+    ],
+    providers: [
+        { provide: Compiler, useFactory: createJitCompiler }
     ]
 })
 export class BytelabsColorSelectorModule {
