@@ -23,11 +23,11 @@ export interface ISwatchSize {
 }
 
 export interface IColorSelectorConfig {
-    palette: IColor[];
-    direction: PaletteDirection;
-    itemSize: ISwatchSize;
-    itemsPer: number;
-    position: PalettePosition;
+    palette?: IColor[];
+    direction?: PaletteDirection;
+    itemSize?: ISwatchSize;
+    itemsPer?: number;
+    position?: PalettePosition;
 }
 
 export class ColorSelectorConfig implements IColorSelectorConfig {
@@ -36,6 +36,12 @@ export class ColorSelectorConfig implements IColorSelectorConfig {
     itemSize: ISwatchSize;
     itemsPer: number;
     position: PalettePosition;
+
+    constructor(config: IColorSelectorConfig = {}) {
+        for (const option of Object.keys(COLOR_SELECTOR_CONFIG_DEFAULTS)) {
+            this[option] = config[option] || COLOR_SELECTOR_CONFIG_DEFAULTS[option];
+        }
+    }
 }
 
 // http://htmlcolorcodes.com/color-chart/flat-design-color-chart/

@@ -9,7 +9,7 @@ const MAX_COLOR = 255;
 @Injectable()
 export class BytelabsColorSelectorService {
 
-    public config: ColorSelectorConfig = new ColorSelectorConfig();
+    public config: ColorSelectorConfig;
 
     private _currentColor: IColor = null;
     private _currentColorSubject: ReplaySubject<IColor> = new ReplaySubject<IColor>();
@@ -51,19 +51,15 @@ export class BytelabsColorSelectorService {
     }
 
     public constructor( @Optional() config: ColorSelectorConfig) {
-        this.updateConfig(config);
+
+        this.config = config ? new ColorSelectorConfig(config) : new ColorSelectorConfig();
+        this.verifyPalette(this.config.palette);
     }
 
-    public updateConfig(config: any) {
-
-        if (config) {
-            for (const option of Object.keys(config)) {
-                this.config[option] = config[option];
-            }
-        }
+    public verifyPalette(palette: IColor[]) {
 
         // Loop through the palette and make sure it's complete
-        for (const color of this.config.palette) {
+        for (const color of palette) {
             if (!color.hex && !color.r && !color.g && !color.b) {
                 throw Error('Colors must provide at least a hex or rgb value');
             }

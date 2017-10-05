@@ -6,7 +6,11 @@ import { NgModule } from '@angular/core';
 import { Component } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { BytelabsColorSelectorModule, IColor, PalettePosition, MATERIAL_COLORS } from '@bytelabsco/ngx-color-selector';
+import { BytelabsColorSelectorModule, IColor, PalettePosition, MATERIAL_COLORS, ColorSelectorConfig } from '@bytelabsco/ngx-color-selector';
+
+export function colorSelectorConfigProvider() {
+  return new ColorSelectorConfig({ palette: MATERIAL_COLORS });
+}
 
 @Component({
   selector: 'app-component',
@@ -18,8 +22,12 @@ export class AppComponent {
 
   public options = {
     palette: MATERIAL_COLORS,
-    position: PalettePosition.TopLeft
+    position: PalettePosition.BottomLeft
   };
+
+  constructor() { console.log('options', this.options); }
+
+
 
   public currentColor: IColor = {
     hex: '#000000'
@@ -29,7 +37,10 @@ export class AppComponent {
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [AppComponent],
-  imports: [BrowserModule, BytelabsColorSelectorModule]
+  imports: [
+    BrowserModule,
+    BytelabsColorSelectorModule.forRoot(colorSelectorConfigProvider())
+  ]
 })
 class AppModule { }
 

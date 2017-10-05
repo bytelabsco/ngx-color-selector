@@ -121,10 +121,14 @@ Import those settings, in your app module, and provide them to the module.
 
 	import { MY_COLOR_SELECTOR_SETTINGS } from '../settings/my-settings';
 
+	export function colorSelectorConfigProvider(){
+		return new ColorSelectorConfig(MY_COLOR_SELECTOR_SETTINGS);
+	}
+
 	@NgModule({
 		imports: [
 		// ...
-		BytelabsColorSelectorModule.forRoot(new ColorSelectorConfig((MY_COLOR_SELECTOR_SETTINGS));
+		BytelabsColorSelectorModule.forRoot(colorSelectorConfigProvider());
 	})
 	export class AppModule {}
 

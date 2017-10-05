@@ -36,6 +36,7 @@ export class BytelabsColorSelectorComponent implements OnInit {
     public width: number;
 
     constructor(private elementRef: ElementRef, private colorSelectorService: BytelabsColorSelectorService) {
+
         this.colorSelectorService.currentColor$.subscribe((color: IColor) => {
             this._color = color;
             this.colorChange.next(color);
@@ -49,7 +50,9 @@ export class BytelabsColorSelectorComponent implements OnInit {
     ngOnInit() {
 
         if (this.options) {
-            this.colorSelectorService.updateConfig(this.options);
+            for (let option of Object.keys(this.options)) {
+                this.colorSelectorService.config[option] = this.options[option];
+            }
         }
     }
 

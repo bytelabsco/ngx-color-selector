@@ -1,9 +1,10 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ColorSelectorConfig, COLOR_SELECTOR_CONFIG_DEFAULTS } from './color-selector-config';
+import { IColorSelectorConfig, ColorSelectorConfig, COLOR_SELECTOR_CONFIG_DEFAULTS } from './color-selector-config';
 
 import { BytelabsColorSelectorComponent } from './color-selector.component';
 import { BytelabsColorSelectorPaletteComponent } from './color-selector-palette.component';
+import { BytelabsColorSelectorService } from './color-selector.service';
 
 export * from './color-selector-config';
 export * from './color-selector-palette.component';
@@ -11,7 +12,7 @@ export * from './color-selector.component';
 export * from './color-selector.service';
 
 
-export function configFactory(config: any = {}) {
+export function configFactory(config: IColorSelectorConfig = {}) {
 
     let initialConfig = {}
 
@@ -37,11 +38,12 @@ export function configFactory(config: any = {}) {
 })
 export class BytelabsColorSelectorModule {
 
-    static forRoot(config: any = {}): ModuleWithProviders {
+    static forRoot(config: ColorSelectorConfig): ModuleWithProviders {
+
         return {
             ngModule: BytelabsColorSelectorModule,
             providers: [{
-                provide: ColorSelectorConfig, useFactory: configFactory, deps: [config]
+                provide: ColorSelectorConfig, useValue: config
             }]
         };
     }
