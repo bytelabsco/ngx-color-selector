@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BytelabsColorSelectorService } from './color-selector.service';
-import { IColor, ISwatchSize, PaletteDirection, PalettePosition } from './color-selector-config';
+import { BytelabsColorSelectorService } from '../../services/color-selector.service';
+import { IColor } from '../../interfaces/color';
+import { ISwatchSize } from '../../interfaces/swatch-size';
+import { PaletteDirection } from '../../interfaces/palette-direction';
+import { PalettePosition } from '../../interfaces/palette-position';
 
 @Component({
     selector: 'bytelabs-color-selector-palette',

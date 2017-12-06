@@ -1,5 +1,6 @@
 import { Injectable, Optional } from '@angular/core';
-import { ColorSelectorConfig, IColor } from './color-selector-config';
+import { IColorSelectorConfig, ColorSelectorConfig } from '../color-selector-config';
+import { IColor } from '../interfaces/color';
 
 import { Observable, ReplaySubject } from 'rxjs';
 
@@ -9,10 +10,27 @@ const MAX_COLOR = 255;
 @Injectable()
 export class BytelabsColorSelectorService {
 
-    public config: ColorSelectorConfig;
+    private _config: ColorSelectorConfig = new ColorSelectorConfig();
 
     private _currentColor: IColor = null;
     private _currentColorSubject: ReplaySubject<IColor> = new ReplaySubject<IColor>();
+
+    public constructor() {
+    }
+
+    get config() {
+        return this._config;
+    }
+
+    set config(value: IColorSelectorConfig) {
+        for (const option of Object.keys(value)) {
+            this._config[option] = value[option];
+
+            if (option === 'palette') {
+                this.verifyPalette(this.config.palette);
+            }
+        }
+    }
 
     get currentColor() {
         return this._currentColor;
@@ -48,12 +66,6 @@ export class BytelabsColorSelectorService {
 
     get currentColor$() {
         return this._currentColorSubject.asObservable() as Observable<IColor>;
-    }
-
-    public constructor( @Optional() config: ColorSelectorConfig) {
-
-        this.config = config ? new ColorSelectorConfig(config) : new ColorSelectorConfig();
-        this.verifyPalette(this.config.palette);
     }
 
     public verifyPalette(palette: IColor[]) {

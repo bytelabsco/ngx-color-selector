@@ -98,48 +98,11 @@ The following options are defined in `IColorSelectorConfig` and a basic implemen
 
 ## Overriding Defaults
 
-
-The default options can be overridden, either globally, or on a per instance basis.
-
-
-### Globally
-
-Create, or use a pre-existing, file to keep settings in, and specify the options you wish to override in a const.  You do not have to override all options.
-	
-	export const MY_COLOR_SELECTOR_SETTINGS {
-		palette = [{hex: "#000"}, {hex: "#FFF"}]
-		// ...
-	} 
-
-Import those settings, in your app module, and provide them to the module.
-
-	import { NgModule } from '@angular/core';
-
-	// ... Other imports
-
-	import { BytelabsColorSelectorModule, ColorSelectorConfig } from '@bytelabsco/ngx-color-selector';
-
-	import { MY_COLOR_SELECTOR_SETTINGS } from '../settings/my-settings';
-
-	export function colorSelectorConfigProvider(){
-		return new ColorSelectorConfig(MY_COLOR_SELECTOR_SETTINGS);
-	}
-
-	@NgModule({
-		imports: [
-		// ...
-		BytelabsColorSelectorModule.forRoot(colorSelectorConfigProvider());
-	})
-	export class AppModule {}
-
-
-### Per Use
-
 In your component you can create a variable to hold your custom options, or you can provide them directly to the component in your template:
 
 	import { Component } from '@angular/core';
 
-	import { IColor, PalettePosition } from '@bytelabsco/ngx-color-selector';
+	import { IColorSelectorConfig, IColor, PalettePosition } from '@bytelabsco/ngx-color-selector';
 
 	@Component({
   		selector: 'app-root',
@@ -149,7 +112,7 @@ In your component you can create a variable to hold your custom options, or you 
 	export class AppComponent {
 
 		// You can just provide an object containing the options you want to override
-  		public colorSelectorOptions = {
+  		public colorSelectorOptions : IColorSelectorConfig = {
     		position: PalettePosition.BottomLeft
   		};
 

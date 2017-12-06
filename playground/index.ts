@@ -39,7 +39,7 @@ export class AppComponent {
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    BytelabsColorSelectorModule.forRoot(colorSelectorConfigProvider())
+    BytelabsColorSelectorModule
   ]
 })
 class AppModule { }

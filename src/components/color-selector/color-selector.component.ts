@@ -1,6 +1,8 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
-import { IColor, PaletteDirection } from './color-selector-config';
-import { BytelabsColorSelectorService } from './color-selector.service';
+import { IColor } from '../../interfaces/color';
+import { PaletteDirection } from '../../interfaces/palette-direction';
+import { BytelabsColorSelectorService } from '../../services/color-selector.service';
+import { IColorSelectorConfig } from '../../color-selector-config';
 
 @Component({
     selector: 'bytelabs-color-selector',
@@ -28,7 +30,7 @@ export class BytelabsColorSelectorComponent implements OnInit {
 
     @Output() colorChange = new EventEmitter<IColor>();
 
-    @Input() options: any;
+    @Input() options: IColorSelectorConfig;
 
     public showPalette: boolean = false;
 
@@ -50,9 +52,7 @@ export class BytelabsColorSelectorComponent implements OnInit {
     ngOnInit() {
 
         if (this.options) {
-            for (let option of Object.keys(this.options)) {
-                this.colorSelectorService.config[option] = this.options[option];
-            }
+            this.colorSelectorService.config = this.options;
         }
     }
 

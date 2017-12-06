@@ -22,7 +22,7 @@
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
     "flatModuleOutFile": "ngx-color-selector.js",
-    "flatModuleId": "ngx-color-selector"
+    "flatModuleId": "@bytelabsco/ngx-color-selector"
   },
   "files": [
     "./index.ts"
